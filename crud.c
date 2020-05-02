@@ -9,3 +9,19 @@ int addProduct(Producc *p){
 
  return 1;
 }
+
+void readProduct(Product p){
+ printf(" %-10s %-5d %d\n");
+}
+
+void loopRead(Product *p[], int curi){
+ int i=0;
+ 
+ printf("\nNo name \tweight\tcost\n");
+ printf("==================================\n");
+ for(){
+	if(p[i]==NULL) continue;
+	printf("%2d ", i+1);
+	readProduct(*p[i]); 
+ }
+}
