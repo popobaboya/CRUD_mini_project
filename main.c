@@ -5,6 +5,7 @@ int main(void){
 	Product *sp[30];
 	int count=0;
 	int curi =0;
+	int check=0;
 	Coin coin;
 	coin.baekwon=10;
 	coin.o_baekwon=10;
@@ -34,6 +35,7 @@ int main(void){
 			}
 			else if(menu==3){
 				consumer=false;
+				check = 0;
 				break;
 			}
 			else if(menu== 0){
@@ -42,7 +44,8 @@ int main(void){
 			}
 
 		}
-		while(consumer==false){
+		while(consumer==false&&exit==false){
+		 if(check==0){
 			char input_password[4];
 			
 			if(!(strcmp(password,"0000"))){
@@ -51,14 +54,15 @@ int main(void){
 				printf("Write password (4 numbers except 0000) >>");
 				scanf("%s",password);
 				printf(">>Completed!\n");
-
     				printf("===============================\n");
+				check = 1;
 			}
 			else{
 				
     				printf("\n===============================\n");
 				printf("Write Password >>");
 				scanf("%s",input_password);
+				check = 1;
 				if(!(strcmp(input_password, password))){
 					printf("**You can't enter Administrator Mode\n");
     					printf("===============================\n");
@@ -67,6 +71,7 @@ int main(void){
 				}
 
 			}
+		 }
 			menu= listAdministrator();
 			if(menu== 1){
     			        if(count<=0){ 
@@ -121,7 +126,7 @@ int main(void){
 				consumer=true;
 				break;
 			}
-			else if(menu== 10){
+			else if(menu== 0){
 				exit=true;
 				break;
 			}
