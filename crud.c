@@ -80,3 +80,42 @@ int selectNum(Product *p[], int curi){
  
  return num;
 }
+
+int loadData(Product *p[]){
+    int count=0;
+    FILE *fp;
+    fp= fopen("product.txt","rt");
+    if(fp==NULL){
+        printf("=> No Data!!\n");
+        return 0;
+    }
+    
+    while(feof(fp)==0){
+        char fstr[20];
+        fscanf(fp,"%s",fstr);
+        p[count]-> weight = atoi(fstr);
+        fscanf(fp,"%s",fstr);
+        p[count]-> cost = atoi(fstr);
+        fscanf(fp,"%s",fstr);
+        p[count]-> count = atoi(fstr);
+        fscanf(fp,"%s",fstr);
+        for(int i=0; i<20; i++) p[count]-> name[i] = fstr[i];
+        //fscanf(fp,"%d %d %d %[^\n]s", &p[count]-> weight, &p[count]-> cost, &p[count]-> count, p[count]-> name);
+        count++;
+    }
+    fclose(fp);
+
+    printf("=> Loading Completed! \n");
+
+    return count;
+}
+
+void saveData(Product *p[], int count){
+    FILE *fp;
+    fp= fopen("product.txt","wt");
+
+    for(int i=0; i<count; i++){
+        if(p[i]!=NULL)
+          fprintf(fp,"%-8d %-8d %-8d %-10s\n", p[i]-> weight, p[i]-> cost, p[i]-> count, p[i]-> name);
+    }
+}
