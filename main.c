@@ -11,16 +11,21 @@ int main(void){
 	coin.o_baekwon=10;
 
 	char password[5]="0000";
-	bool consumer= true;	
+	bool consumer= true;	//if customer is true -> customer mode, else administrator mode
 	bool exit=false; //if exit is 'true', end the program.
 
-	//count= loadData();
+	printf("***Vending Mahcine***\n");
+    sp[count]=(Product*)malloc(sizeof(Product));
+	
+	count= loadData(&sp[0]); //'count' increases if there are datas in 'product.txt'
+	printf("count: %d\n",count);
 
 	while(exit==false){
-        	int menu;
+        int menu;
 		//printf("password: %s\n",password);
+		
 		while(consumer==true){
-			
+
 			menu= listConsumer();	
 
 			if(menu==1){
@@ -31,6 +36,38 @@ int main(void){
 				loopRead(sp, curi);
 			}
 			else if(menu==2){
+				int num;
+				int price;
+				int change_obaek; //ÀÜµ·À¸·Î °Å½½·¯ÁÙ 500¿øÀÇ °¹¼ö
+				int change_baek;
+				int money;
+
+				printf("**Buy Product**\n");
+				num=selectNum(sp, curi);
+ 				price= sp[num-1]->cost;
+			
+				printf("How much will you put?(Please write in KRW(won))>>");
+				scanf("%d",&money);
+
+				if(price > money){
+					printf("*Not Enough Money..\n");
+					continue;
+				}
+				sp[num-1]->count--;
+
+				money= money - price;
+				change_obaek= money/500;
+				change_baek= (money%500)/100;
+
+				coin.baekwon= coin.baekwon - change_baek;
+				coin.o_baekwon= coin.o_baekwon - change_obaek;
+				coin.total_won= coin.total_won -price;
+			    
+				if(coin.o_baekwon < 0 || coin.baekwon < 0){
+        			printf("*Sorry..I don't have enough change..\n");
+			    }else{
+        			printf(">>Change: %d 100 won and %d 500 won\n",change_baek , change_obaek);
+			    }
 
 			}
 			else if(menu==3){
@@ -48,22 +85,22 @@ int main(void){
 		 if(check==0){
 			char input_password[4];
 			
-			if(!(strcmp(password,"0000"))){
+			if(strcmp(password,"0000")==0){
 				
     				printf("\n===============================\n");
-				printf("Write password (4 numbers except 0000) >>");
-				scanf("%s",password);
-				printf(">>Completed!\n");
+					printf("Write password (4 numbers except 0000) >>");
+					scanf("%s",password);
+					printf(">>Completed!\n");
     				printf("===============================\n");
-				check = 1;
+					check = 1;
 			}
 			else{
-				
-    				printf("\n===============================\n");
+				//printf("password: %s\n",password);
+    			printf("\n===============================\n");
 				printf("Write Password >>");
 				scanf("%s",input_password);
 				check = 1;
-				if(!(strcmp(input_password, password))){
+				if(strcmp(input_password, password)!=0){
 					printf("**You can't enter Administrator Mode\n");
     					printf("===============================\n");
 					consumer=true;
@@ -132,7 +169,8 @@ int main(void){
 			}
 		}
 
-	}	
+	}
+	saveData(&sp[0], count);
+
 	return 0;	
 }
-
