@@ -4,14 +4,14 @@
 
 typedef struct{ 
     char name[20];
-    int kor;
     int weight;
     int cost;
+    int count;
 } Product;
 
 int addProduct(Product *p);
 void readProduct(Product p);
 void loopRead(Product *p[], int curi);
-void updateProduct(Product *p[], curi);
-void deleteProduct(Product *p[], curi);
+void updateProduct(Product *p[],int curi);
+void deleteProduct(Product *p[],int curi);
 int selectNum(Product *p[], int curi);
