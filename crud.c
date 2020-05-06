@@ -1,11 +1,19 @@
+#include "crud.h" 
+
 int addProduct(Product *p){
  getchar();
  printf("Enter product's name : ");
- gets(s->name);
+ fgets(p->name,20, stdin);
+ for(int i=0;i<20;i++){
+ 	if(p->name[i]=='\n'){
+          p->name[i]='\0';
+          break;
+        }
+ }
  printf("Enter product's weight : ");
- scanf("%d", &s->weight);
- printf("Enter product;s cost");
- scnaf("%d", %s->cost);
+ scanf("%d", &p->weight);
+ printf("Enter product's cost : ");
+ scanf("%d", &p->cost);
 
  return 1;
 }
@@ -19,14 +27,14 @@ void loopRead(Product *p[], int curi){
  
  printf("\nNo name \tweight\tcost\n");
  printf("==================================\n");
- for(){
+ for(i=0;i<curi;i++){
 	if(p[i]==NULL) continue;
 	printf("%2d ", i+1);
 	readProduct(*p[i]); 
  }
 }
 
-void updateProduct(Product *p[], curi){
+void updateProduct(Product *p[],int curi){
  int num=0;
  num=selectNum(p, curi);
  if(num==0){
@@ -36,11 +44,17 @@ void updateProduct(Product *p[], curi){
 
  getchar();
  printf("Enter new product's name : ");
- gets(p[num]->name);
+ fgets(p[num-1]->name,20, stdin);
+ for(int i=0;i<20;i++){
+ 	if(p[num-1]->name[i]=='\n'){
+          p[num-1]->name[i]='\0';
+          break;
+        }
+ }
  printf("Enter new product's weight : ");
- scanf("%d", &p[num]->weight);
+ scanf("%d", &p[num-1]->weight);
  printf("Enter new product's cost : ");
- scanf("%d", &p[num]->cost);
+ scanf("%d", &p[num-1]->cost);
  printf("Updated!\n");
  
 }
