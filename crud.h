@@ -16,3 +16,5 @@ void loopRead(Product *p[], int curi);
 void updateProduct(Product *p[],int curi);
 void deleteProduct(Product *p[],int curi);
 int selectNum(Product *p[], int curi);
+int loadData(Product *p[]);
+void saveData(Product *p[],int count);

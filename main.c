@@ -14,16 +14,21 @@ int main(void){
 	coin.o_baekwon=10;
 
 	char password[5]="0000";
-	bool consumer= true;	
+	bool consumer= true;	//if customer is true -> customer mode, else administrator mode
 	bool exit=false; //if exit is 'true', end the program.
 
-	//count= loadData();
+	printf("***Vending Mahcine***\n");
+    sp[count]=(Product*)malloc(sizeof(Product));
+	
+	count= loadData(&sp[0]); //'count' increases if there are datas in 'product.txt'
+	printf("count: %d\n",count);
 
 	while(exit==false){
-        	int menu;
+        int menu;
 		//printf("password: %s\n",password);
+		
 		while(consumer==true){
-			
+
 			menu= listConsumer();	
 
 			if(menu==1){
@@ -34,6 +39,7 @@ int main(void){
 				loopRead(sp, curi);
 			}
 			else if(menu==2){
+
     			        if(count<=0){ 
                				printf("There is no products!\n");
                 			continue;
@@ -56,22 +62,22 @@ int main(void){
 		 if(check==0){
 			char input_password[4];
 			
-			if(!(strcmp(password,"0000"))){
+			if(strcmp(password,"0000")==0){
 				
     				printf("\n===============================\n");
-				printf("Write password (4 numbers except 0000) >>");
-				scanf("%s",password);
-				printf(">>Completed!\n");
+					printf("Write password (4 numbers except 0000) >>");
+					scanf("%s",password);
+					printf(">>Completed!\n");
     				printf("===============================\n");
-				check = 1;
+					check = 1;
 			}
 			else{
-				
-    				printf("\n===============================\n");
+				//printf("password: %s\n",password);
+    			printf("\n===============================\n");
 				printf("Write Password >>");
 				scanf("%s",input_password);
 				check = 1;
-				if(!(strcmp(input_password, password))){
+				if(strcmp(input_password, password)!=0){
 					printf("**You can't enter Administrator Mode\n");
     					printf("===============================\n");
 					consumer=true;
@@ -140,7 +146,10 @@ int main(void){
 			}
 		}
 
-	}	
+	}
+	saveData(&sp[0], count);
+
+
 	return 0;	
 }
 
@@ -207,3 +216,4 @@ void buyProduct(Product *p[], Coin *coin, int curi){
  coin->baekwon -= ch_100;
  coin->total_won = coin->o_baekwon*500 + coin->baekwon*100;
 }
+
