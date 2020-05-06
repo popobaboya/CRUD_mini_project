@@ -72,6 +72,3 @@ int changePassword(char* password){
 		return 0;
 	}
 }
-
-//int saveData(Product p[], *p);
-//int loadData(Product *p);
