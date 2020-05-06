@@ -1,5 +1,5 @@
 Vending : main.c crud.o
-	gcc -o Vending main.c curd.o
+	gcc -o Vending main.c crud.o
 
 clean :
 	rm *.o Vending
