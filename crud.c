@@ -1,4 +1,4 @@
-int addProduct(Producc *p){
+int addProduct(Product *p){
  getchar();
  printf("Enter product's name : ");
  gets(s->name);
@@ -11,7 +11,7 @@ int addProduct(Producc *p){
 }
 
 void readProduct(Product p){
- printf(" %-10s %-5d %d\n");
+ printf(" %-10s %-5d %d\n", p.name, p.weight, p.cost);
 }
 
 void loopRead(Product *p[], int curi){
@@ -24,4 +24,45 @@ void loopRead(Product *p[], int curi){
 	printf("%2d ", i+1);
 	readProduct(*p[i]); 
  }
+}
+
+void updateProduct(Product *p[], curi){
+ int num=0;
+ num=selectNum(p, curi);
+ if(num==0){
+  printf("Canceled!\n");
+  return;
+ }
+
+ getchar();
+ printf("Enter new product's name : ");
+ gets(p[num]->name);
+ printf("Enter new product's weight : ");
+ scanf("%d", &p[num]->weight);
+ printf("Enter new product's cost : ");
+ scanf("%d", &p[num]->cost);
+ printf("Updated!\n");
+ 
+}
+
+void deleteProduct(Product *p[], int curi){
+ int num=0;
+ num=selectNum(p, curi);
+ if(num==0){
+  printf("Canceled!\n");
+  return;
+ }
+ free(p[num-1]);
+ p[num-1]=NULL;
+ printf("Deleted!\n");
+}
+
+int selectNum(Product *p[], int curi){
+ int num=0;
+ 
+ loopRead(p, curi);
+ printf("\nWhich number do you want to select?(cancel : 0) ");
+ scanf("%d", &num);
+ 
+ return num;
 }
