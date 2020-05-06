@@ -5,9 +5,9 @@
 typedef struct{ 
     char name[20];
     int kor;
-    int eng;
-    int math;
-} Score;
+    int weight;
+    int cost;
+} Product;
 
 int addProduct(Product *p);
 void readProduct(Product p);
