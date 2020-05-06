@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <string.h>
+#include "crud.h"
 
 typedef int bool;
 enum{false, true};
@@ -13,6 +12,9 @@ void listConsumer();
 void listAdministrator();
 
 int main(void){
+	Product *sp[30];
+	int count=0;
+	int curi =0;
 	int baekwon=10;
 	int o_baekwon=10;
 	char password[5]="0000";
@@ -41,7 +43,11 @@ int main(void){
 
 
 			if(menu==1){
-
+    			        if(count<=0){ 
+               				printf("There is no data!\n");
+                			continue;
+            			}
+				loopRead(sp, curi);
 			}
 			else if(menu==2){
 
@@ -81,8 +87,8 @@ int main(void){
 			printf("3. Delete Product\n");
 			printf("4. Add Prduct\n");
 			printf("5. Search Product\n");
-            printf("6. Check Coin Amount\n");
-            printf("7. Refill Coin\n");
+	       	 	printf("6. Check Coin Amount\n");
+        	 	printf("7. Refill Coin\n");
 			printf("8. Go to Consumer Mode\n");
 			printf("9. exit\n");
 			printf("===============================\n");
@@ -90,16 +96,33 @@ int main(void){
 			scanf("%d",&menu);
 
 			if(menu== 1){
-				
+    			        if(count<=0){ 
+               				printf("There is no data!\n");
+                			continue;
+            			}
+				loopRead(sp, curi);
+			 	
 			}
 			if(menu== 2){
+    			        if(count<=0){ 
+               				printf("There is no data!\n");
+                			continue;
+            			}
+				updateProduct(sp, curi);
 				
 			}
 			if(menu== 3){
-				
+    			        if(count<=0){ 
+               				printf("There is no data!\n");
+                			continue;
+            			}
+				deleteProduct(sp, curi);
+				count--;
 			}
 			if(menu== 4){
-				
+				sp[curi]=(Product*)malloc(sizeof(Product));
+				count += addProduct(sp[curi++]);
+				printf("Added!\n");
 			}
 			if(menu== 5){
 				
