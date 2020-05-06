@@ -1,13 +1,14 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 typedef struct{ 
     char name[20];
     int weight;
     int cost;
-    int count;
+    int quantity;
 } Product;
+
 
 int addProduct(Product *p);
 void readProduct(Product p);
