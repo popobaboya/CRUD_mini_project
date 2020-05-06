@@ -15,6 +15,7 @@ int main(void){
 	Product *sp[30];
 	int count=0;
 	int curi =0;
+	int check =0;
 	int baekwon=10;
 	int o_baekwon=10;
 	char password[5]="0000";
@@ -22,7 +23,6 @@ int main(void){
     int total_won;
     total_won= (baekwon*100) + (o_baekwon*500);
 	
-	int count;
 	bool exit=false; //if exit is 'true', end the program.
 
 	//count= loadData();
@@ -54,6 +54,7 @@ int main(void){
 			}
 			else if(menu==3){
 				consumer=false;
+				check=0;
 				break;
 			}
 			else if(menu== 4){
@@ -62,24 +63,28 @@ int main(void){
 			}
 
 		}
-		while(consumer==false){
-			int menu;
+		while(consumer==false&&exit!=true){
+		 int menu =0;
+		 if(check==0){
 			char input_password[4];
 			if(!(strcmp(password,"0000"))){
 				printf("\nWrite password (4 numbers except 0000) >>");
 				scanf("%s",password);
 				printf(">>Completed!\n");
+				check=1;
 			}
 			else{
 				printf("\nWrite Password >>");
 				scanf("%s",input_password);
+				check=1;
 				if(strcmp(input_password, password)){
 					printf("**You can't enter Administrator Mode\n");
-                    consumer=true;
-                    break;
+                    			consumer=true;
+                   		 	break;
 				}
 
 			}
+		 }
 			printf("\n**Administrator Mode**\n");
 			printf("===============================\n");
 			printf("1. Check Product List\n");
