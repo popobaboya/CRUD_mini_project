@@ -1,6 +1,9 @@
 #include "crud.h"
 #include "vendingMachine.h"
 
+
+void buyProduct(Product *p[], Coin *coin, int curi);
+
 int main(void){
 	Product *sp[30];
 	int count=0;
@@ -25,12 +28,17 @@ int main(void){
 
 			if(menu==1){
     			        if(count<=0){ 
-               				printf("There is no data!\n");
+               				printf("There is no products!\n");
                 			continue;
             			}
 				loopRead(sp, curi);
 			}
 			else if(menu==2){
+    			        if(count<=0){ 
+               				printf("There is no products!\n");
+                			continue;
+            			}
+				buyProduct(sp, &coin, curi);
 
 			}
 			else if(menu==3){
@@ -136,3 +144,66 @@ int main(void){
 	return 0;	
 }
 
+
+void buyProduct(Product *p[], Coin *coin, int curi){
+ int num=0;
+ int count=0;
+ int cost_t=0;
+ int money=0;
+ int money_t=0;
+ int change=0;
+ int ch_100=0;
+ int ch_500=0;
+ num = selectNum(p, curi);
+ if(num==0){
+  printf("Canceled!\n");
+  return;
+ }
+ while(p[num-1]->quantity<=0){
+  printf("That is sold out!\n");
+  printf("Please choose other one\n");
+  num = selectNum(p, curi);
+  if(num==0){
+   printf("Canceled!\n");
+   return;
+  }
+ }
+ printf("How many do you want? : ");
+ scanf("%d", &count);
+ while(count>p[num-1]->quantity){
+  printf("The product's maximum quantity is %d!\n", p[num-1]->quantity);
+  printf("How many do you want? : ");
+  scanf("%d", &count);
+ }
+
+ cost_t = p[num-1]->cost * count;
+ printf("Total cost is %d\n", cost_t);
+ printf("Please insert money : ");
+ scanf("%d", &money);
+ money_t = money;
+
+ while(money_t<cost_t){
+  printf("Total cost is %d, you inserted %d\n", cost_t, money);
+  printf("Please insert more money :\n");
+  scanf("%d", &money);
+  money_t += money;
+ }
+
+ change = money_t - cost_t;
+ ch_500 = change/500;
+ ch_100 = (change%500)/100; 
+ if(coin->o_baekwon-ch_500 < 0 || coin->baekwon-ch_100 < 0){
+	printf("Sorry! There is not enough coin for change!\n");
+	printf("Please contact to administrator\n");
+	return;
+ }
+ 
+ printf("\nHere are the products you picked, %d of %s\n", count, p[num-1]->name);
+ printf("The change is %d, %d of 500won and %d of 100won\n", change, ch_500, ch_100);
+ printf("Thank you for using!\n");
+ 
+ p[num-1]->quantity -= count;
+ coin->o_baekwon -= ch_500;
+ coin->baekwon -= ch_100;
+ coin->total_won = coin->o_baekwon*500 + coin->baekwon*100;
+}
