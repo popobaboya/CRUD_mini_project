@@ -20,7 +20,8 @@ int main(void){
 	printf("***Vending Mahcine***\n");
     sp[count]=(Product*)malloc(sizeof(Product));
 	
-	count= loadData(&sp[0]); //'count' increases if there are datas in 'product.txt'
+	count= loadData(sp); //'count' increases if there are datas in 'product.txt'
+	curi = count;
 	printf("count: %d\n",count);
 
 	while(exit==false){

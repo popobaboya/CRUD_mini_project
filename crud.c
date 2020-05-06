@@ -93,18 +93,10 @@ int loadData(Product *p[]){
         return 0;
     }
     
-    while(feof(fp)==0){
-        char fstr[20];
-        fscanf(fp,"%s",fstr);
-        p[count]-> weight = atoi(fstr);
-        fscanf(fp,"%s",fstr);
-        p[count]-> cost = atoi(fstr);
-        fscanf(fp,"%s",fstr);
-        p[count]-> count = atoi(fstr);
-        fscanf(fp,"%s",fstr);
-        for(int i=0; i<20; i++) p[count]-> name[i] = fstr[i];
-        //fscanf(fp,"%d %d %d %[^\n]s", &p[count]-> weight, &p[count]-> cost, &p[count]-> count, p[count]-> name);
-        count++;
+    for(;;count++){
+	p[count] = (Product*)malloc(sizeof(Product));
+        fscanf(fp,"%d %d %d %[^\n]s", &p[count]-> weight, &p[count]-> cost, &p[count]-> quantity, p[count]-> name);
+ 	if(feof(fp)) break;
     }
     fclose(fp);
 
@@ -119,6 +111,9 @@ void saveData(Product *p[], int count){
 
     for(int i=0; i<count; i++){
         if(p[i]!=NULL)
-          fprintf(fp,"%-8d %-8d %-8d %-10s\n", p[i]-> weight, p[i]-> cost, p[i]-> count, p[i]-> name);
+          fprintf(fp,"%d %d %d %s\n", p[i]-> weight, p[i]-> cost, p[i]-> quantity, p[i]-> name);
     }
+ fclose(fp);
+
+ printf("Saved!\n");
 }
