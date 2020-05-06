@@ -14,19 +14,21 @@ int addProduct(Product *p){
  scanf("%d", &p->weight);
  printf("Enter product's cost : ");
  scanf("%d", &p->cost);
+ printf("Enter product's quantity : ");
+ scanf("%d", &p->quantity);
 
  return 1;
 }
 
 void readProduct(Product p){
- printf(" %-10s %-5d %d\n", p.name, p.weight, p.cost);
+ printf("%-12s %-9d %-9d %d\n", p.name, p.weight, p.cost, p.quantity);
 }
 
 void loopRead(Product *p[], int curi){
  int i=0;
  
- printf("\nNo name \tweight\tcost\n");
- printf("==================================\n");
+ printf("\nNo Name \tWeight\tCost\tQuantity\n");
+ printf("==========================================\n");
  for(i=0;i<curi;i++){
 	if(p[i]==NULL) continue;
 	printf("%2d ", i+1);
@@ -55,8 +57,9 @@ void updateProduct(Product *p[],int curi){
  scanf("%d", &p[num-1]->weight);
  printf("Enter new product's cost : ");
  scanf("%d", &p[num-1]->cost);
+ printf("Enter new product's quantity : ");
+ scanf("%d", &p[num-1]->quantity); 
  printf("Updated!\n");
- 
 }
 
 void deleteProduct(Product *p[], int curi){
