@@ -79,6 +79,7 @@ int main(void){
 				scanf("%s",input_password);
 				check = 1;
 				if(strcmp(input_password, password)!=0){
+					printf("The password is wrong\n");
 					printf("**You can't enter Administrator Mode\n");
     					printf("===============================\n");
 					consumer=true;
