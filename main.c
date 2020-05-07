@@ -66,7 +66,7 @@ int main(void){
 			if(strcmp(password,"0000")==0){
 				
     				printf("\n===============================\n");
-					printf("Write password (4 numbers except 0000) >>");
+					printf("Write password for initialize (4 numbers except 0000) >>");
 					scanf("%s",password);
 					printf(">>Completed!\n");
     				printf("===============================\n");
