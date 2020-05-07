@@ -30,6 +30,7 @@ int listAdministrator(){
 	printf("7. Check Coin Amount\n");
 	printf("8. Refill Coin\n");
 	printf("9. Go to Consumer Mode\n");
+	printf("10. Save data\n");
 	printf("0. exit\n");
 	printf("===============================\n");
 	printf("Which menu do you choose? (number)>>");

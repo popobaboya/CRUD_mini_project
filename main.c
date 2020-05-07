@@ -141,6 +141,9 @@ int main(void){
 				consumer=true;
 				break;
 			}
+			else if(menu == 10){
+			 saveData(&sp[0],count);
+			}
 			else if(menu== 0){
 				exit=true;
 				break;
@@ -148,7 +151,6 @@ int main(void){
 		}
 
 	}
-	saveData(&sp[0], count);
 
 
 	return 0;	
