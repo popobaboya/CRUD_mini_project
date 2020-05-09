@@ -127,12 +127,16 @@ void searchName(Product *p[], int curi){
  for(int i=0; i<curi; i++){
 	if(p[i]!=NULL){
 		if(strstr(p[i]->name, search)){
-			printf("\n%2d", i+1);
+			if(i==0){
+ 				printf("\nNo Name \tWeight\tCost\tQuantity\n");
+				printf("==========================================\n");
+			}
+			printf("%2d ", i+1);
 			readProduct(*p[i]);
 			scount++;
 		}
 	}
  }
- if(scount==0) printf("=> Ther is no searched data!\n");
+ if(scount==0) printf("=> There is no searched data!\n");
  printf("\n");
 }
