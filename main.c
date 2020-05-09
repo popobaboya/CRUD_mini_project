@@ -119,7 +119,7 @@ int main(void){
 				printf("Added!\n");
 			}
 			if(menu== 5){
-				
+				searchName(sp, curi);				
 			}
 			else if(menu==6){
 				printf("\n*Change Password*\n");

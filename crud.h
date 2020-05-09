@@ -18,3 +18,4 @@ void deleteProduct(Product *p[],int curi);
 int selectNum(Product *p[], int curi);
 int loadData(Product *p[]);
 void saveData(Product *p[],int count);
+void searchName(Product *s[], int curi);

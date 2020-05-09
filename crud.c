@@ -117,3 +117,22 @@ void saveData(Product *p[], int count){
 
  printf("Saved!\n");
 }
+
+void searchName(Product *p[], int curi){
+ int scount =0;
+ char search[20];
+ 
+ printf("Enter a word you want to search : ");
+ scanf("%s", search);
+ for(int i=0; i<curi; i++){
+	if(p[i]!=NULL){
+		if(strstr(p[i]->name, search)){
+			printf("\n%2d", i+1);
+			readProduct(*p[i]);
+			scount++;
+		}
+	}
+ }
+ if(scount==0) printf("=> Ther is no searched data!\n");
+ printf("\n");
+}
