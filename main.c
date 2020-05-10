@@ -183,8 +183,8 @@ void buyProduct(Product *p[], Coin *coin, int curi){
  }
  printf("How many do you want? : ");
  scanf("%d", &count);
- while(count>p[num-1]->quantity){
-  printf("The product's maximum quantity is %d!\n", p[num-1]->quantity);
+ while(count>p[num-1]->quantity||count<0){
+  printf("You enterd wrong input. The product's maximum quantity is %d!\n", p[num-1]->quantity);
   printf("How many do you want? : ");
   scanf("%d", &count);
  }

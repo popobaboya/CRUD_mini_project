@@ -124,12 +124,13 @@ void searchName(Product *p[], int curi){
  
  printf("Enter a word you want to search : ");
  scanf("%s", search);
- for(int i=0; i<curi; i++){
+ for(int i=0, j=0; i<curi; i++){
 	if(p[i]!=NULL){
 		if(strstr(p[i]->name, search)){
-			if(i==0){
+			if(j==0){
  				printf("\nNo Name \tWeight\tCost\tQuantity\n");
 				printf("==========================================\n");
+				j++;
 			}
 			printf("%2d ", i+1);
 			readProduct(*p[i]);
