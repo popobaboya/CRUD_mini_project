@@ -78,7 +78,7 @@ int selectNum(Product *p[], int curi){
  int num=0;
  
  loopRead(p, curi);
- printf("\nWhich number do you want to select?(cancel : 0) ");
+ printf("\nWhich number do you want to select?(cancel : 0) : ");
  scanf("%d", &num);
  
  return num;

@@ -197,7 +197,7 @@ void buyProduct(Product *p[], Coin *coin, int curi){
 
  while(money_t<cost_t){
   printf("Total cost is %d, you inserted %d\n", cost_t, money);
-  printf("Please insert more money :\n");
+  printf("Please insert more money :");
   scanf("%d", &money);
   money_t += money;
  }
