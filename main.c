@@ -153,7 +153,7 @@ int main(void){
 
 	}
 
-
+	printf("Thank you for using!\n");
 	return 0;	
 }
 
